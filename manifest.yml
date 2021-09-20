@@ -1,0 +1,12 @@
+modules:
+  macro:
+    - key: forge-app-crud-hello-world
+      function: main
+      title: forge-app-crud
+      description: Inserts Hello world!
+  function:
+    - key: main
+      handler: index.run
+app:
+  id: ari:cloud:ecosystem::app/541796af-381c-4bee-8d3a-e766ffccbc39
+  name: forge-app-crud

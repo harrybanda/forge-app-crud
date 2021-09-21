@@ -1,9 +1,9 @@
 modules:
   macro:
-    - key: forge-app-crud-hello-world
+    - key: forge-app-crud
       function: main
       title: forge-app-crud
-      description: Inserts Hello world!
+      description: A book management application
   function:
     - key: main
       handler: index.run

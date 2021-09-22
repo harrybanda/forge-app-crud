@@ -81,7 +81,18 @@ export const BooksTable = ({
                     setOpenModal(true);
                   }}
                 />
-                <Button appearance="danger" icon="trash" />
+                <Button
+                  appearance="danger"
+                  icon="trash"
+                  onClick={async () => {
+                    await storage.delete(book.key);
+                    await storage
+                      .query()
+                      .where("key", startsWith("book_"))
+                      .getMany()
+                      .then((res) => setBooks(res.results));
+                  }}
+                />
               </ButtonSet>
             </Cell>
           </Row>

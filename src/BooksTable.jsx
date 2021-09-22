@@ -12,7 +12,12 @@ import ForgeUI, {
 } from "@forge/ui";
 import { storage, startsWith } from "@forge/api";
 
-export const BooksTable = ({ isOpenModal, setOpenModal }) => {
+export const BooksTable = ({
+  isOpenModal,
+  setOpenModal,
+  setUpdating,
+  setSelectedBook,
+}) => {
   const [books, setBooks] = useState([]);
 
   useEffect(async () => {
@@ -28,7 +33,10 @@ export const BooksTable = ({ isOpenModal, setOpenModal }) => {
       <Button
         text="Add Book"
         icon="add-circle"
-        onClick={() => setOpenModal(true)}
+        onClick={() => {
+          setOpenModal(true);
+          setUpdating(false);
+        }}
       />
       <Table>
         <Head>
@@ -64,7 +72,15 @@ export const BooksTable = ({ isOpenModal, setOpenModal }) => {
             </Cell>
             <Cell>
               <ButtonSet>
-                <Button text="Edit" icon="edit" />
+                <Button
+                  text="Edit"
+                  icon="edit"
+                  onClick={() => {
+                    setSelectedBook(book);
+                    setUpdating(true);
+                    setOpenModal(true);
+                  }}
+                />
                 <Button appearance="danger" icon="trash" />
               </ButtonSet>
             </Cell>

@@ -1,8 +1,11 @@
 import ForgeUI, { ModalDialog, Form, TextField } from "@forge/ui";
+import { storage } from "@forge/api";
+import uuid from "uuid-random";
 
-export const BookDialog = ({ books, setBooks, isOpenModal, setOpenModal }) => {
+export const BookDialog = ({ isOpenModal, setOpenModal }) => {
   const onSubmit = async (formData) => {
-    setBooks([...books, formData]);
+    const bookId = "book_" + uuid();
+    await storage.set(bookId, formData);
     setOpenModal(false);
   };
 

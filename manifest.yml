@@ -10,3 +10,6 @@ modules:
 app:
   id: ari:cloud:ecosystem::app/541796af-381c-4bee-8d3a-e766ffccbc39
   name: forge-app-crud
+permissions:
+  scopes:
+    - "storage:app"

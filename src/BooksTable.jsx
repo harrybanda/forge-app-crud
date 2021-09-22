@@ -7,9 +7,22 @@ import ForgeUI, {
   Cell,
   Button,
   ButtonSet,
+  useState,
+  useEffect,
 } from "@forge/ui";
+import { storage, startsWith } from "@forge/api";
 
-export const BooksTable = ({ books, setOpenModal }) => {
+export const BooksTable = ({ isOpenModal, setOpenModal }) => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(async () => {
+    await storage
+      .query()
+      .where("key", startsWith("book_"))
+      .getMany()
+      .then((res) => setBooks(res.results));
+  }, [isOpenModal]);
+
   return (
     <Fragment>
       <Button
@@ -38,16 +51,16 @@ export const BooksTable = ({ books, setOpenModal }) => {
         {books.map((book) => (
           <Row>
             <Cell>
-              <Text>{book.bookname}</Text>
+              <Text>{book.value.bookname}</Text>
             </Cell>
             <Cell>
-              <Text>{book.author}</Text>
+              <Text>{book.value.author}</Text>
             </Cell>
             <Cell>
-              <Text>{book.quantity}</Text>
+              <Text>{book.value.quantity}</Text>
             </Cell>
             <Cell>
-              <Text>{book.price}</Text>
+              <Text>{book.value.price}</Text>
             </Cell>
             <Cell>
               <ButtonSet>

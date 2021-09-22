@@ -4,17 +4,10 @@ import { BookDialog } from "./BookDialog";
 
 const App = () => {
   const [isOpenModal, setOpenModal] = useState(false);
-  const [books, setBooks] = useState([]);
-
   return (
     <Fragment>
-      <BooksTable books={books} setOpenModal={setOpenModal} />
-      <BookDialog
-        books={books}
-        setBooks={setBooks}
-        isOpenModal={isOpenModal}
-        setOpenModal={setOpenModal}
-      />
+      <BooksTable isOpenModal={isOpenModal} setOpenModal={setOpenModal} />
+      <BookDialog isOpenModal={isOpenModal} setOpenModal={setOpenModal} />
     </Fragment>
   );
 };
